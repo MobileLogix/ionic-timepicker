@@ -3,8 +3,8 @@ angular.module('ionic-timepicker.provider', [])
   .provider('ionicTimePicker', function () {
 
     var config = {
-      setLabel: 'Set',
-      closeLabel: 'Close',
+      setLabel: 'Select',
+      closeLabel: 'Cancel',
       inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
       format: 12,
       step: 15
@@ -123,6 +123,11 @@ angular.module('ionic-timepicker.provider', [])
         setMinSecs($scope.mainObj.inputTime, $scope.mainObj.format);
 
         buttons.push({
+          text: $scope.mainObj.closeLabel,
+          type: 'button_close'
+        });
+
+        buttons.push({
           text: $scope.mainObj.setLabel,
           type: 'button_set',
           onTap: function (e) {
@@ -143,17 +148,14 @@ angular.module('ionic-timepicker.provider', [])
           }
         });
 
-        buttons.push({
-          text: $scope.mainObj.closeLabel,
-          type: 'button_close'
-        });
-
         $scope.popup = $ionicPopup.show({
           templateUrl: 'ionic-timepicker.html',
           scope: $scope,
           cssClass: 'ionic_timepicker_popup',
           buttons: buttons
         });
+
+        return $scope.popup;
 
       };
 
