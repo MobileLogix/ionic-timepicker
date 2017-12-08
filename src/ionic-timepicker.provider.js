@@ -3,6 +3,7 @@ angular.module('ionic-timepicker.provider', [])
   .provider('ionicTimePicker', function () {
 
     var config = {
+      templateUrl: 'ionic-timepicker.html',
       setLabel: 'Select',
       closeLabel: 'Cancel',
       inputTime: (((new Date()).getHours() * 60 * 60) + ((new Date()).getMinutes() * 60)),
@@ -149,7 +150,7 @@ angular.module('ionic-timepicker.provider', [])
         });
 
         $scope.popup = $ionicPopup.show({
-          templateUrl: 'ionic-timepicker.html',
+          templateUrl: $scope.mainObj.templateUrl,
           scope: $scope,
           cssClass: 'ionic_timepicker_popup',
           buttons: buttons
